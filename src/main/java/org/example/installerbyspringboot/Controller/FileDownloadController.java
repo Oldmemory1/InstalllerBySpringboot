@@ -1,5 +1,8 @@
 package org.example.installerbyspringboot.Controller;
 
+import lombok.extern.java.Log;
+import org.example.installerbyspringboot.Component.Utility;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -9,9 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
-
+@Log
 @Controller
 public class FileDownloadController {
+    private final Utility utility;
+
+    public FileDownloadController(Utility utility) {
+        this.utility = utility;
+    }
 
     // 提供下载页面的HTML
     @GetMapping("/download")
@@ -23,7 +31,9 @@ public class FileDownloadController {
     @GetMapping("/download_file")
     public ResponseEntity<Resource> downloadFile() throws IOException {
         // 从classpath加载文件资源
-        Resource resource = new ClassPathResource("data.exe");
+        log.info("下载文件名:"+utility.getDownload_file1_name());
+
+        Resource resource = new ClassPathResource(utility.getDownload_file1_name());
 
         // 验证文件存在
         if (!resource.exists()) {
