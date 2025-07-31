@@ -32,16 +32,16 @@ public class FileDownloadController {
         // 从classpath加载文件资源
         log.info("下载文件名:"+utility.getDownload_file1_name());
 
-        Resource resource = new ClassPathResource(utility.getDownload_file1_name());
+        Resource resource = new ClassPathResource("files/"+utility.getDownload_file1_name());
 
         // 验证文件存在
         if (!resource.exists()) {
-            throw new RuntimeException("文件未找到: data.exe");
+            throw new RuntimeException("文件未找到:"+utility.getDownload_file1_name());
         }
 
         // 设置响应头
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=data.exe");
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getDownload_file1_name());
         headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
         headers.add(HttpHeaders.PRAGMA, "no-cache");
         headers.add(HttpHeaders.EXPIRES, "0");
