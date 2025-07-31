@@ -12,7 +12,4 @@ public class Utility {
     public String getDownload_file1_name() {
         return name;
     }
-    public void setDownload_file1_name(String name) {
-        this.name = name;
-    }
 }

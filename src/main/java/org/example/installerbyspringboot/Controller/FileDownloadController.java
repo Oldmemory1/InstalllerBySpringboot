@@ -2,7 +2,6 @@ package org.example.installerbyspringboot.Controller;
 
 import lombok.extern.java.Log;
 import org.example.installerbyspringboot.Component.Utility;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
