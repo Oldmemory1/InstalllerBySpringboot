@@ -2,18 +2,15 @@ package org.example.installerbyspringboot.Controller;
 
 import lombok.extern.java.Log;
 import org.example.installerbyspringboot.Component.Utility;
-import org.example.installerbyspringboot.Utils.MD5Calculator;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 @Log
 @Controller
