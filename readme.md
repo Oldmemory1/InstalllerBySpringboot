@@ -1,4 +1,4 @@
-### 项目功能：使用Springboot打包文件，默认服务端口号8192，部署后运行，访问http://localhost:8192即可看到结果
+### 项目功能：使用Springboot打包文件，默认服务端口号8192，部署后运行，访问http://localhost:8192 即可看到结果
 # Chapter1:使用教程
 
 ## 1.1运行环境配置
@@ -55,6 +55,6 @@ public class Utility {
 
 ## 1.4 项目运行
 
-### Windows11：在打包后的文件所在的文件夹中，右键选择"在终端中打开"，打开powershell使用java -jar .\InstallerBySpringBoot-0.0.0.1.jar即可运行，随后在浏览器中输入http://localhost:8192即可访问到网页
+### Windows11：在打包后的文件所在的文件夹中，右键选择"在终端中打开"，打开powershell使用java -jar .\InstallerBySpringBoot-0.0.0.1.jar即可运行，随后在浏览器中输入http://localhost:8192 即可访问到网页
 
 ![Windows11下的项目运行](./run_on_windows11.png "在Windows11上运行打包后的项目")
