@@ -5,9 +5,20 @@
   <title>文件下载</title>
 </head>
 <body>
-<h1>点击下载文件</h1>
-<a href="/download_file" download>
+<p>点击下载文件,请在下载完成后检查文件哈希确定文件是否损坏</p>
+<a href="/download_file1" download>
   <button>下载文件1</button>
 </a>
+<p></p>
+<div>
+  <div th:text="${file1_md5_hash}"></div>
+</div>
+<p>文件1的MD5:18364e990eae0bb31deb765a281a6718</p>
+<p>文件1的SHA256:8621304a6889c2a59fa5e09c8b18fb7e6a0b9182e37fdb0f6add3365a8bc9945</p>
+<a href="/download_file2" download>
+  <button>下载文件2</button>
+</a>
+<p>文件2的MD5:462c007b2095ffee4d41dcfea16f6cdf</p>
+<p>文件2的SHA256:73337bb296679b8ed75fe077d099408ad1c7d7b3dc3500e68ec75fa767e2d252</p>
 </body>
 </html>
