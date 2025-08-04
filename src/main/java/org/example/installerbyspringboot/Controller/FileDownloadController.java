@@ -2,6 +2,7 @@ package org.example.installerbyspringboot.Controller;
 
 import lombok.extern.java.Log;
 import org.example.installerbyspringboot.Component.Utility;
+import org.example.installerbyspringboot.Utils.MD5Calculator;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
 @Log
 @Controller
 public class FileDownloadController {
@@ -22,9 +25,7 @@ public class FileDownloadController {
     }
 
     @GetMapping("/download")
-    public String downloadPage(Model model) {
-        String file1_md5_hash = "abcdef";
-        model.addAttribute("file1_md5_hash",file1_md5_hash);
+    public String downloadPage() {
         return "download-page"; // 对应src/main/resources/templates/download-page.html
     }
 
@@ -58,7 +59,7 @@ public class FileDownloadController {
     @GetMapping("/download_file2")
     public ResponseEntity<Resource> downloadFile2() throws IOException {
         // 从classpath加载文件资源
-        log.info("下载文件名:"+utility.getDownload_file1_name());
+        log.info("下载文件名:"+utility.getDownload_file2_name());
 
         Resource resource = new ClassPathResource("files/"+utility.getDownload_file2_name());
 
@@ -70,6 +71,31 @@ public class FileDownloadController {
         // 设置响应头
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getDownload_file2_name());
+        headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
+        headers.add(HttpHeaders.PRAGMA, "no-cache");
+        headers.add(HttpHeaders.EXPIRES, "0");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(resource.contentLength())
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
+    }
+    @GetMapping("/download_file3")
+    public ResponseEntity<Resource> downloadFile3() throws IOException {
+        // 从classpath加载文件资源
+        log.info("下载文件名:"+utility.getDownload_file3_name());
+
+        Resource resource = new ClassPathResource("files/"+utility.getDownload_file3_name());
+
+        // 验证文件存在
+        if (!resource.exists()) {
+            throw new RuntimeException("文件未找到:"+utility.getDownload_file3_name());
+        }
+
+        // 设置响应头
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getDownload_file3_name());
         headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
         headers.add(HttpHeaders.PRAGMA, "no-cache");
         headers.add(HttpHeaders.EXPIRES, "0");

@@ -5,20 +5,23 @@
   <title>文件下载</title>
 </head>
 <body>
-<p>点击下载文件,请在下载完成后检查文件哈希确定文件是否损坏</p>
-<a href="/download_file1" download>
+<p><a href="/">回到主页</a></p>
+<p><a href="/file_hash_check">点击检测下载后的文件哈希值（注意:此网址打开较慢，请耐心等待）</a></p>
+<p>点击下列的按钮下载文件，下载完成后检查文件哈希可确定文件是否损坏</p>
+<p>在所有bin文件下载完成后，将下载到的所有bin文件和安装器放在一个目录下再执行，否则会安装失败！</p>
+<p><a href="/download_file1" download>
   <button>下载文件1</button>
 </a>
-<p></p>
-<div>
-  <div th:text="${file1_md5_hash}"></div>
-</div>
-<p>文件1的MD5:18364e990eae0bb31deb765a281a6718</p>
-<p>文件1的SHA256:8621304a6889c2a59fa5e09c8b18fb7e6a0b9182e37fdb0f6add3365a8bc9945</p>
+</p>
+<p>
 <a href="/download_file2" download>
   <button>下载文件2</button>
 </a>
-<p>文件2的MD5:462c007b2095ffee4d41dcfea16f6cdf</p>
-<p>文件2的SHA256:73337bb296679b8ed75fe077d099408ad1c7d7b3dc3500e68ec75fa767e2d252</p>
+</p>
+<p>
+<a href="/download_file3" download>
+  <button>下载文件3</button>
+</a>
+</p>
 </body>
 </html>
