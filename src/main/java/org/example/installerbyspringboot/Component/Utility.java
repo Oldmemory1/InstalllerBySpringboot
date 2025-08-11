@@ -1,16 +1,17 @@
 package org.example.installerbyspringboot.Component;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-
+@PropertySource(value = "classpath:settings.properties", encoding = "UTF-8")
 public class Utility {
-    @Value("part1.bin")
+    @Value("${file1.name}")
     private String name1;
-    @Value("part2.bin")
+    @Value("${file2.name}")
     private String name2;
-    @Value("part3.bin")
+    @Value("${file3.name}")
     private String name3;
 
     public String getDownload_file1_name() {
