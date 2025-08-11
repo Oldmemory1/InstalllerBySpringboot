@@ -13,37 +13,9 @@
 
 ### 项目的application.properties的server.port字段决定了服务器开启的端口号，如果遇到端口冲突，请把端口号自增1，改为8193，若仍然冲突，请重复自增修改操作
 
-### 项目的resources/files文件夹是存放要下载的文件，如果不想要修改org.example.installerbyspringboot.Component.Utility.java文件的值注解，请在resources/files文件夹中存放拆分后的3个bin文件，分别命名为part1.bin part2.bin part3.bin
+### 项目的resources/files文件夹是存放要下载的文件，如果不想要修改settings.properties，请在resources/files文件夹中存放拆分后的3个bin文件，分别命名为part1.bin part2.bin part3.bin
 
-### 因为作者暂时没找到只需要修改application.properties就可以改变文件名的操作，所以如果想要使用不同的三个文件名，例如section1.bin section2.bin section3.bin 则需要修改org.example.installerbyspringboot.Component.Utility.java为如下
-```java
-package org.example.installerbyspringboot.Component;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-@Component
-
-public class Utility {
-    @Value("section1.bin")//修改注解来指定文件名
-    private String name1;
-    @Value("section2.bin")//修改注解来指定文件名
-    private String name2;
-    @Value("section3.bin")//修改注解来指定文件名
-    private String name3;
-
-    public String getDownload_file1_name() {
-        return name1;
-    }
-    public String getDownload_file2_name() {
-        return name2;
-    }
-    public String getDownload_file3_name(){
-        return name3;
-    }
-}
-
-```
+### 修改settings.properties可以改变待下载文件的文件名的操作，默认待下载的三个文件的文件名为part1.bin part2.bin part3.bin
 
 ### 前端界面file-hash-check因为要计算三个较大文件的哈希值，可能打开会较慢，但此界面为可选界面，并不强制要求用户点击，是因为后续的合并器merger需要和所有下载到的bin文件放在同一个目录下，合并器在操作前需要用户手动点击确认文件是否无误
 
