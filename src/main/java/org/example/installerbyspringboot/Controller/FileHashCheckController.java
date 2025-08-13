@@ -25,6 +25,7 @@ public class FileHashCheckController {
     }
 
     @GetMapping("/file_hash_check")
+    @Deprecated
     public String fileHashCheck(Model model) throws IOException, NoSuchAlgorithmException {
         Resource file1 = new ClassPathResource("files/"+utility.getName1());
         MD5Calculator calculator1 = new MD5Calculator(file1,"md5");
@@ -49,6 +50,36 @@ public class FileHashCheckController {
                         "status","OK",
                         "message", "获取成功",
                         "data", utility.getName1()
+                )
+        );
+    }
+    @GetMapping("api/get_file2_name")
+    public ResponseEntity<?> getFile2Name(){
+        return ResponseEntity.ok(
+                Map.of(
+                        "status","OK",
+                        "message", "获取成功",
+                        "data", utility.getName2()
+                )
+        );
+    }
+    @GetMapping("api/get_file3_name")
+    public ResponseEntity<?> getFile3Name(){
+        return ResponseEntity.ok(
+                Map.of(
+                        "status","OK",
+                        "message", "获取成功",
+                        "data", utility.getName3()
+                )
+        );
+    }
+    @GetMapping("api/get_merger_name")
+    public ResponseEntity<?> getMergerName(){
+        return ResponseEntity.ok(
+                Map.of(
+                        "status","OK",
+                        "message", "获取成功",
+                        "data", utility.getMergerName()
                 )
         );
     }
