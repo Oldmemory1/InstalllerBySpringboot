@@ -3,19 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>下载文件哈希校对</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
 </head>
 <body>
 <div>
-    <p>文件1的MD5值</p>
-    <div th:text="${file1_md5_hash}"></div>
-</div>
-<div>
-    <p>文件2的MD5值</p>
-    <div th:text="${file2_md5_hash}"></div>
-</div>
-<div>
-    <p>文件3的MD5值</p>
-    <div th:text="${file3_md5_hash}"></div>
+    <button id="hashButton" onclick="getFile1Hash()">检测文件1的哈希值</button>
+    <br><br>
+    <label for="hashBox1"><input type="text" id="hashBox1"></label>
 </div>
 </body>
 </html>
+
+
+
+
+<script type="text/javascript">
+    async function getFile1Hash(){
+        try{
+            //首先获取文件1的名称
+            const response = await fetch('http://localhost:8192/api/get_file1_name', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+            const result = await response.json();
+            const file1Name = result.data;
+            console.log("文件1名称:",file1Name);
+            const File1Hash = await submitFileName(file1Name);
+            console.log("文件1哈希值:", File1Hash);
+            // 将哈希值放到文本框
+            document.getElementById("hashBox1").value = File1Hash;
+        } catch (error){
+            console.error("请求错误:",error);
+        }
+    }
+    async function submitFileName(fileName) {
+        try {
+            const dict = {
+            };
+            dict['fileName'] = fileName;
+            const response = await fetch('http://localhost:8192/api/submit_file', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dict)
+            });
+            const result = await response.json();
+            console.log(result.status);
+            console.log(result.message);
+            console.log(result.data);
+            return result.data;
+        } catch (error) {
+            console.error('请求错误:', error);
+            return "error";
+        }
+    }
+
+
+</script>

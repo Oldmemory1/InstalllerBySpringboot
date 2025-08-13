@@ -30,18 +30,18 @@ public class FileDownloadController {
     @GetMapping("/download_file1")
     public ResponseEntity<Resource> downloadFile1() throws IOException {
         // 从classpath加载文件资源
-        log.info("下载文件名:"+utility.getDownload_file1_name());
+        log.info("下载文件名:"+utility.getName1());
 
-        Resource resource = new ClassPathResource("files/"+utility.getDownload_file1_name());
+        Resource resource = new ClassPathResource("files/"+utility.getName1());
 
         // 验证文件存在
         if (!resource.exists()) {
-            throw new RuntimeException("文件未找到:"+utility.getDownload_file1_name());
+            throw new RuntimeException("文件未找到:"+utility.getName1());
         }
 
         // 设置响应头
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getDownload_file1_name());
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getName1());
         headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
         headers.add(HttpHeaders.PRAGMA, "no-cache");
         headers.add(HttpHeaders.EXPIRES, "0");
@@ -56,18 +56,18 @@ public class FileDownloadController {
     @GetMapping("/download_file2")
     public ResponseEntity<Resource> downloadFile2() throws IOException {
         // 从classpath加载文件资源
-        log.info("下载文件名:"+utility.getDownload_file2_name());
+        log.info("下载文件名:"+utility.getName2());
 
-        Resource resource = new ClassPathResource("files/"+utility.getDownload_file2_name());
+        Resource resource = new ClassPathResource("files/"+utility.getName2());
 
         // 验证文件存在
         if (!resource.exists()) {
-            throw new RuntimeException("文件未找到:"+utility.getDownload_file2_name());
+            throw new RuntimeException("文件未找到:"+utility.getName2());
         }
 
         // 设置响应头
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getDownload_file2_name());
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getName2());
         headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
         headers.add(HttpHeaders.PRAGMA, "no-cache");
         headers.add(HttpHeaders.EXPIRES, "0");
@@ -81,18 +81,43 @@ public class FileDownloadController {
     @GetMapping("/download_file3")
     public ResponseEntity<Resource> downloadFile3() throws IOException {
         // 从classpath加载文件资源
-        log.info("下载文件名:"+utility.getDownload_file3_name());
+        log.info("下载文件名:"+utility.getName3());
 
-        Resource resource = new ClassPathResource("files/"+utility.getDownload_file3_name());
+        Resource resource = new ClassPathResource("files/"+utility.getName3());
 
         // 验证文件存在
         if (!resource.exists()) {
-            throw new RuntimeException("文件未找到:"+utility.getDownload_file3_name());
+            throw new RuntimeException("文件未找到:"+utility.getName3());
         }
 
         // 设置响应头
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getDownload_file3_name());
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getName3());
+        headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
+        headers.add(HttpHeaders.PRAGMA, "no-cache");
+        headers.add(HttpHeaders.EXPIRES, "0");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(resource.contentLength())
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
+    }
+    @GetMapping("/download_merger")
+    public ResponseEntity<Resource> downloadMerger() throws IOException {
+        // 从classpath加载文件资源
+        log.info("下载文件名:"+utility.getMergerName());
+
+        Resource resource = new ClassPathResource("files/"+utility.getMergerName());
+
+        // 验证文件存在
+        if (!resource.exists()) {
+            throw new RuntimeException("文件未找到:"+utility.getMergerName());
+        }
+
+        // 设置响应头
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+utility.getMergerName());
         headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
         headers.add(HttpHeaders.PRAGMA, "no-cache");
         headers.add(HttpHeaders.EXPIRES, "0");

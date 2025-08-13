@@ -1,0 +1,19 @@
+#hashBox1 {
+    width: 500px;
+    height: 40px;
+    font-family: "Microsoft YaHei UI Light", fangsong;
+    font-size: 16px;
+}
+#hashButton {
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+    font-family: "Microsoft YaHei",fangsong;
+    color: black;
+    border: none black;
+    border-radius: 8px;
+    cursor: pointer;
+}
+#hashButton:hover {
+    background-color: aliceblue;
+}
